@@ -5,7 +5,7 @@
 ## 1. Add plugin  
 플러그인을 추가하는 방법은 약간의 규칙을 지켜준다면, 아주 간단합니다!  
 1. 기존에 있는 다른 플러그인 폴더를 복사해주세요. _new plugin_ 이름 대신 넣고 싶은 이름을 넣으시면 됩니다.  
-![1.png](/Users/kcrong/Desktop/1.png)  
+![1.png](https://raw.githubusercontent.com/WeareJoker/RaspBerryPy/master/images/1.png)  
 
 2. new plugin 폴더에서, 개발할 때 **_건드릴 수_** 있는 파일은 다음과 같습니다.  
 	- `handler.py`  
@@ -19,7 +19,7 @@
 
 `handler.py` 에는 패킷 객체가 옵니다. 안에 내용을 보면  
 
-![2.png](/Users/kcrong/Desktop/2.png)  
+![2.png](https://raw.githubusercontent.com/WeareJoker/RaspBerryPy/master/images/2.png)  
 
 세션 사용과 packet 변수 처리는 위 이미지 처럼 하면 됩니다.   
 다만 반드시 지켜주어야 할 것이 있습니다.  
@@ -30,7 +30,7 @@
 
 `model.py` 에는 테이블 정의가 이루어집니다. 안에 내용을 보면  
 
-![3.png](/Users/kcrong/Desktop/3.png)  
+![3.png](https://raw.githubusercontent.com/WeareJoker/RaspBerryPy/master/images/3.png)  
 
 `DNS`는 테이블 정의 클래스입니다. 모든 테이블 정의 클래스는 `Base`를 상속받아 작성해야합니다.  
 기존의 클래스 소스를 복붙하여 수정하여도 상관없으니, 크게 신경쓰지 않아도 되는 부분입니다.  
@@ -70,12 +70,12 @@ birth = Column(Date)
 방법은 간단합니다.  
 `database.py` 파일을 **직접** 실행해주면 됩니다.  
 
-![4.png](/Users/kcrong/Desktop/4.png)
+![4.png](https://raw.githubusercontent.com/WeareJoker/RaspBerryPy/master/images/4.png)
 
 없던 result.db 가 생겼습니다!  
 
 ## Execute
-![5.png](/Users/kcrong/Desktop/5.png)
+![5.png](https://raw.githubusercontent.com/WeareJoker/RaspBerryPy/master/images/5.png)
 
 
 # Thank You :)
