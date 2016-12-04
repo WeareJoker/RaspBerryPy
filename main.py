@@ -7,7 +7,7 @@ from impacket import ImpactDecoder
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-filename = 'Kcrong_HOME.pcap'
+filename = raw_input("Input PCAP filename: ")
 
 decoder = ImpactDecoder.EthDecoder()
 
