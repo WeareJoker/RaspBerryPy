@@ -1,9 +1,10 @@
 import os
 import sys
+
 import dpkt
+from impacket import ImpactDecoder
 
 from plugins import plugin_list
-from impacket import ImpactDecoder
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
