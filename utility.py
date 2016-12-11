@@ -2,7 +2,7 @@ class NoInfoException(Exception):
     pass
 
 
-class InvalidInfoExceptkion(Exception):
+class InvalidInfoException(Exception):
     pass
 
 
