@@ -13,5 +13,5 @@ def handler(ether):
     else:
         if port == 80:  # if http packet
             data = proto.child()
-            print data.get_buffer_as_string()
+            print(data.get_buffer_as_string())
 

@@ -1,2 +1,2 @@
-from handler import *
-from model import *
+from .handler import *
+from .model import *
