@@ -1,27 +1,21 @@
 # -*-coding: utf-8 -*-
-import re
 
 import requests
 from bs4 import BeautifulSoup
 from sqlalchemy.exc import ProgrammingError, IntegrityError
 
 from database import Session
-from utility import HTTPRequest, InvalidInfoException, NoInfoException, http_request_only
+from utility import InvalidInfoException, http_request_filter
 from .model import Auction
 
 session = Session()
 
 
-@http_request_only
-def handler(pkt):
+@http_request_filter(".*auction.co.kr")
+def handler(req):
     try:
-        h = HTTPRequest(pkt.getlayer("Raw").load.decode())
-
-        if re.match(".*auction.co.kr", h.host) is None:
-            return
-
-        auction_crawling(h.cookie)
-    except (InvalidInfoException, NoInfoException, UnicodeDecodeError):
+        auction_crawling(req.cookie)
+    except InvalidInfoException:
         return
 
 
