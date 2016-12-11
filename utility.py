@@ -46,3 +46,14 @@ class HTTPRequest:
             self._cookie = self.get_cookie()
 
         return self._cookie
+
+
+def http_request_only(func):
+
+    def wrapper(*args, **kwargs):
+        if args[0].getlayer("TCP").dport != 80:
+            return
+        else:
+            return func(*args, **kwargs)
+
+    return wrapper
