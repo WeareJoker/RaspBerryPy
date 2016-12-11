@@ -6,6 +6,9 @@ session = Session()
 
 def handler(pkt):
     dns = pkt.getlayer("DNS")
+    if dns is None:
+        return
+
     try:
         ans_len = len(dns.an)
     except TypeError:
