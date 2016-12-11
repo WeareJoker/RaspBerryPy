@@ -6,15 +6,15 @@ from bs4 import BeautifulSoup
 from sqlalchemy.exc import ProgrammingError, IntegrityError
 
 from database import Session
-from utility import HTTPRequest, InvalidInfoException, NoInfoException
+from utility import HTTPRequest, InvalidInfoException, NoInfoException, http_request_only
 from .model import Auction
 
 session = Session()
 
 
+@http_request_only
 def handler(pkt):
     try:
-
         h = HTTPRequest(pkt.getlayer("Raw").load.decode())
 
         if re.match(".*auction.co.kr", h.host) is None:
