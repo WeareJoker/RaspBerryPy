@@ -1,3 +1,8 @@
+import re
+
+import functools
+
+
 class NoInfoException(Exception):
     pass
 
@@ -59,12 +64,21 @@ class HTTPRequest:
         return self._url
 
 
-def http_request_only(func):
+def http_request_filter(filter_rule):
+    def actual_http_filter(func):
 
-    def wrapper(*args, **kwargs):
-        if args[0].getlayer("TCP").dport != 80:
-            return
-        else:
-            return func(*args, **kwargs)
+        @functools.wraps(func)
+        def wrapper(*args, **_):
+            if args[0].getlayer("TCP").dport != 80:
+                return
 
-    return wrapper
+            h = HTTPRequest(args[0].getlayer("Raw").load.decode())
+
+            if re.match(filter_rule, h.host) is None:
+                return
+            else:
+                return func(h)
+
+        return wrapper
+
+    return actual_http_filter
