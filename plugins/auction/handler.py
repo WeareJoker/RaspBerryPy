@@ -34,7 +34,7 @@ def auction_crawling(cookie_dict):
     userid = soup.find('span', attrs={'id': 'lblMemberId'})
     username = soup.find('span', attrs={'id': 'lblMemberName'})
     if userid is None or username is None:
-        return ""
+        return
     user_name = username.text
     user_id = userid.text
 
