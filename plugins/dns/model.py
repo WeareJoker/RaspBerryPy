@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String
 from database import Base
 
 
-class DNS(Base):
+class DNSHost(Base):
     __tablename__ = 'dns'
     id = Column(Integer, primary_key=True)
     name = Column(String(30), nullable=False)
