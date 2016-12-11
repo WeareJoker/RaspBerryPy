@@ -16,8 +16,6 @@ def handler(pkt):
     except (UnpackError, AttributeError):
         return
 
-    host_dict = dict()
-
     if len(dns.an) != 0:
         for ans in dns.an:
             host = ans.name
@@ -26,12 +24,9 @@ def handler(pkt):
             except AttributeError:
                 ip = ans.cname
 
-            host_dict[host] = ip
-
-    for host in host_dict:
-        try:
-            session.add(DNSHost(host, host_dict[host]))
-        except ValueError:
-            continue
+            try:
+                session.add(DNSHost(host, ip))
+            except ValueError:
+                continue
 
     session.commit()
