@@ -69,15 +69,19 @@ def http_request_filter(filter_rule):
 
         @functools.wraps(func)
         def wrapper(*args, **_):
-            if args[0].getlayer("TCP").dport != 80:
-                return
+            try:
+                if args[0].getlayer("TCP").dport != 80:
+                    raise AttributeError
 
-            h = HTTPRequest(args[0].getlayer("Raw").load.decode())
+                h = HTTPRequest(args[0].getlayer("Raw").load.decode())
 
-            if re.match(filter_rule, h.host) is None:
+            except (NoInfoException, AttributeError):
                 return
             else:
-                return func(h)
+                if re.match(filter_rule, h.host) is None:
+                    return
+                else:
+                    return func(h)
 
         return wrapper
 
