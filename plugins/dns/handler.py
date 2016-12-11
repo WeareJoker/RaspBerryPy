@@ -1,27 +1,37 @@
 from _socket import inet_ntoa
 
 from dpkt.dns import DNS
-from model import DNSHost
+from dpkt.dpkt import UnpackError
+
 from database import Session
+from model import DNSHost
 from utility import ether2data
 
 session = Session()
 
 
 def handler(pkt):
-    dns = DNS(ether2data(pkt).get_packet())
+    try:
+        dns = DNS(ether2data(pkt).get_packet())
+    except (UnpackError, AttributeError):
+        return
 
-    if len(dns.an) == 0:
-        host = dns.qd[0].name
-        ip = None
-        session.add(DNSHost(host, ip))
-    else:
+    host_dict = dict()
+
+    if len(dns.an) != 0:
         for ans in dns.an:
             host = ans.name
             try:
                 ip = inet_ntoa(ans.ip)
             except AttributeError:
                 ip = ans.cname
-            session.add(DNSHost(host, ip))
+
+            host_dict[host] = ip
+
+    for host in host_dict:
+        try:
+            session.add(DNSHost(host, host_dict[host]))
+        except ValueError:
+            continue
 
     session.commit()
