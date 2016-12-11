@@ -1,7 +1,7 @@
 import os
 import sys
-
 import dpkt
+
 from impacket import ImpactDecoder
 
 from plugins import plugin_list
@@ -12,7 +12,7 @@ decoder = ImpactDecoder.EthDecoder()
 
 filename = raw_input("Input PCAP filename: ")
 
-for ts, pkt in dpkt.pcap.Reader(open(filename, 'r')):
-    packet = decoder.decode(pkt)
+for _, raw_pkt in dpkt.pcap.Reader(open(filename, 'r')):
+    pkt = decoder.decode(raw_pkt)
     for plugin in plugin_list:
-        plugin.handler(packet)
+        plugin.handler(pkt)
