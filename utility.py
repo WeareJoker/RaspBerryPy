@@ -42,7 +42,7 @@ class HTTPRequest:
             return False
 
     def get_url(self):
-        return self.request_object[0].split(' ')[1]
+        return self.host + self.request_object[0].split(' ')[1]
 
     @property
     def cookie(self):
