@@ -11,6 +11,7 @@ class HTTPRequest:
         self.payload = payload
         self.request_object = self.get_http_request_object_list()
         self._cookie = None
+        self._url = None
         self.host = self.get_host()
 
     def __repr__(self):
@@ -40,12 +41,22 @@ class HTTPRequest:
         else:
             return False
 
+    def get_url(self):
+        return self.request_object[0].split(' ')[1]
+
     @property
     def cookie(self):
         if self._cookie is None:
             self._cookie = self.get_cookie()
 
         return self._cookie
+
+    @property
+    def url(self):
+        if self._url is None:
+            self._url = self.get_url()
+
+        return self._url
 
 
 def http_request_only(func):
