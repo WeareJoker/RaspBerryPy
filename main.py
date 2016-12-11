@@ -1,18 +1,12 @@
-import os
-import sys
-import dpkt
-
-from impacket import ImpactDecoder
+from scapy.all import *
 
 from plugins import plugin_list
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-decoder = ImpactDecoder.EthDecoder()
+filename = input("Input PCAP filename: ")
 
-filename = raw_input("Input PCAP filename: ")
 
-for _, raw_pkt in dpkt.pcap.Reader(open(filename, 'r')):
-    pkt = decoder.decode(raw_pkt)
+for pkt in rdpcap(filename):
     for plugin in plugin_list:
         plugin.handler(pkt)
