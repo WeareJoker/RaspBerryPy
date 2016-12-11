@@ -1,18 +1,8 @@
-# coding: utf-8
-def ether2data(ether):
-    proto = ether.child().child()
-    return proto.child()
-
-
-def get_data_payload(data):
-    return data.get_buffer_as_string()
-
-
 class NoInfoException(Exception):
     pass
 
 
-class InvalidInfoException(Exception):
+class InvalidInfoExceptkion(Exception):
     pass
 
 
