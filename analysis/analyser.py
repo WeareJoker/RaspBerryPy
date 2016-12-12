@@ -1,8 +1,5 @@
 from scapy.all import *
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-from .plugins import plugin_list
+from analysis.plugins import plugin_list
 
 
 def analysis(pcap_filename):
@@ -11,5 +8,6 @@ def analysis(pcap_filename):
             plugin.handler(pkt)
 
 
-if __name__ == '__main__':
-    analysis(input("PCAP: "))
+def migrate():
+    for module in plugin_list:
+        module.model.Base.metadata.create_all()
