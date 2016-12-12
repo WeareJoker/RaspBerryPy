@@ -10,7 +10,7 @@ if __name__ == '__main__':
         argv = sys.argv[1]
 
     except IndexError:
-        print("%s [ migrate || filename ]")
+        print("%s [ migrate || filename ]" % sys.argv[0])
         print("Requires more than one argv.")
 
     else:
