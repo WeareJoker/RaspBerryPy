@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from database import Session
 from sqlalchemy.exc import ProgrammingError, IntegrityError
 
-from analyser.utility import InvalidInfoException, http_request_filter
+from analysis.utility import InvalidInfoException, http_request_filter
 from .model import Auction
 
 session = Session()

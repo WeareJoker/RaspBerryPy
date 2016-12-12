@@ -11,8 +11,8 @@ Session = sessionmaker(bind=engine)
 
 
 def migrate():
-    from analyser import plugins
-    for module in plugins.plugin_list:
+    import analysis
+    for module in analysis.plugins.plugin_list:
         module.model.Base.metadata.create_all()
 
 

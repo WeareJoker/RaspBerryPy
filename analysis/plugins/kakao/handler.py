@@ -1,6 +1,6 @@
 from database import Session
 
-from analyser.utility import http_request_filter
+from analysis.utility import http_request_filter
 from .model import Kakao
 
 session = Session()

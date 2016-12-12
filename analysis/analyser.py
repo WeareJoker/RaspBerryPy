@@ -1,8 +1,8 @@
 from scapy.all import *
 
-from analyser.plugins import plugin_list
-
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from .plugins import plugin_list
 
 
 def analysis(pcap_filename):

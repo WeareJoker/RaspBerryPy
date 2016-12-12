@@ -2,7 +2,7 @@ import re
 
 from sqlalchemy import Column, Integer, String
 
-from analyser.database import Base
+from analysis.database import Base
 
 host_rule = re.compile(
     r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain...

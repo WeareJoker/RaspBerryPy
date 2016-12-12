@@ -1,4 +1,4 @@
-from analyser.database import Session
+from analysis.database import Session
 
 session = Session()
 

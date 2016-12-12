@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from analyser.database import Base
+from analysis.database import Base
 
 
 class MailList(Base):
