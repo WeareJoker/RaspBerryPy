@@ -12,15 +12,12 @@ plugin_list = [importlib.import_module(plugin) for plugin in plugin_directory_li
 
 def get_model_list():
     from ..database import engine
-
-    total_table = list()
-
     table_names = engine.table_names()
-    for plugin in plugin_list:
-        for model_obj in dir(plugin.model):
-            if model_obj.lower() in table_names:
-                total_table.append(getattr(plugin.model, model_obj))
 
-    return total_table
+    return [getattr(plugin.model, model_obj)
+            for plugin in plugin_list
+            for model_obj in dir(plugin.model)
+            if model_obj.lower() in table_names]
+
 
 table_list = get_model_list()
