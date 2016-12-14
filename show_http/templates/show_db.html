@@ -1,0 +1,24 @@
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+</head>
+<h1>Show - Menu</h1>
+<br>
+<body>
+
+<input type="button" class="btn btn-default btn" value="Back go home" onclick='location.href="{{ url_for('index') }}"'>
+{% for table in table_list %}
+    <input type="button" class="btn btn-primary" value="{{ table.__tablename__ }}"
+           onclick='location.href="{{ url_for('show', table_name=table.__tablename__) }}"'>
+{% endfor %}
+{% block buttons %}
+{% endblock %}
+
+{% block body %}
+{% endblock %}
+</body>

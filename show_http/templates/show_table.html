@@ -1,0 +1,35 @@
+{% extends "show_db.html" %}
+{% block buttons %}
+    <input type="button"
+           class="btn btn-default btn"
+           value="Back to Show page"
+           onclick='location.href="{{ url_for('show') }}"'>
+{% endblock %}
+
+
+{% block body %}
+
+    <h2>{{ table.__tablename__ }}</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            {% for column in columns %}
+                <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for row in data %}
+            <tr>
+                <td>{{ row.id }}</td>
+                {% for column in columns %}
+                    <td>{{ row[column] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
