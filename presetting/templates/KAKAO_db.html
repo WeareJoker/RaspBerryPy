@@ -1,0 +1,32 @@
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<linSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+{% extends "show_db.html" %}
+{% block body %}
+{% if error %}<em>Error : {{ error }}</em>{% endif %}
+	<dl>
+	    <dt><h2>KAKAO</h2>
+	      <table class="table table-striped">
+	        <thread>
+	          <tr>
+	            <th>#</th>
+	            <th>URL</th>
+	          </tr>
+	        </thread>
+	        <tbody>
+	            {% for kakao in kakaolist %}
+	            <tr>
+	              <td>{{ dns.id }}</td>
+	              <td>{{ kakao.url }}</td>
+	            </tr>
+	            {% endfor %}
+	        </tbody>
+	      </table>
+{% endblock %}

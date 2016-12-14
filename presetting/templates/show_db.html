@@ -1,0 +1,27 @@
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<linSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+<head>
+<h1>Show - Menu</h1>
+    <br></br>
+<style>
+	
+</style>
+<body style="MARGIN: 5px 30px;">
+</head>
+<body>
+{% if session.login %}
+	<input type="button" class="btn btn-default btn" value="Back go home" onclick='location.href="{{ url_for('home') }}"'>
+    <input type="button" class="btn btn-primary" value="Maillist" onclick='location.href="{{ url_for('Maillist_db') }}"'>
+    <input type="button" class="btn btn-primary" value="DNS" onclick='location.href="{{ url_for('DNS_db') }}"'>
+    <input type="button" class="btn btn-primary" value="Kakao" onclick='location.href="{{ url_for('KAKAO_db') }}"'>
+{% endif %}
+{% block body %}
+{% endblock %}
+</body>

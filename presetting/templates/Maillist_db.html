@@ -1,0 +1,42 @@
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<linSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+{% extends "show_db.html" %}
+{% block body %}
+{% if error %}<em>Error : {{ error }}</em>{% endif %}
+	<dl>
+		<dt><h2>Maillist</h2>
+		    <table class="table table-striped">
+		      <thread>
+		        <tr>
+		          <th>#</th>
+		          <th>Username</th>
+		          <th>Usermail</th>
+		          <th>Title</th>
+		          <th>Sendername</th>
+		          <th>Sendermail</th>
+		        </tr>
+		      </thread>
+		      <tbody>
+		          {% for mail in maillist %}
+		          <tr>
+		            <td>{{ mail.id }}</td>
+		            <td>{{ mail.username }}</td>
+		            <td>{{ mail.usermail }}</td>
+		            <td>{{ mail.title }}</td>
+		            <td>{{ mail.sendername}}</td>
+		            <td>{{ mail.sendermail }}</td>
+		          </tr>
+		          {% endfor %}
+		      </tbody>
+		    </table>
+	  </dl>
+{% endblock %}

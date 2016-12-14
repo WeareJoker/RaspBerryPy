@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<linSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+<div style="MARGIN: 5px 30px;">
+<h1>Show Database</h1>
+    </br>
+            
+
+</head>
+    
+<body>
+    
+	<div class="panel panel-default">
+	<div class="panel-body">
+        <img src="{{ url_for('static', filename='daan.png') }}" alt"다안띠삐뽀"border"3px" width="1200px" height="500px" display: block; margine-left: auto; margin-right: auto;><br></br>
+	</div>
+</div>
+	{% if not session.login %}
+	  <input type=button class="btn btn-primary" value=Login onclick=location.href="{{ url_for('login') }}">
+	{% else %}
+	  <input type=button class="btn btn-default" value=Logout onclick=location.href="{{ url_for('logout') }}">
+	{% endif %}
+	  <input type=button class="btn btn-default" value=Home onclick=location.href="{{ url_for('home') }}">
+	  <input type=button class="btn btn-default" value=Show onclick=location.href="{{ url_for('show_db') }}">
+	{% block body %}{% endblock %}
+        
+      
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+
+</body>
+</html>

@@ -1,4 +1,3 @@
-#!/bin/bash
 COMMAND=$1
 INTERFACE=$2
 
