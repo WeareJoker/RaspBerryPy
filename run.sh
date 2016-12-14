@@ -88,7 +88,7 @@ fi
 
 pip install -r requirements.txt
 
-python main.py run eth1
+python main.py run tap0
 
 
 
