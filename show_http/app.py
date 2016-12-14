@@ -69,6 +69,7 @@ def get_table_columns(table):
 
 @app.route('/show')
 @app.route('/show/<string:table_name>')
+@login_check(True)
 def show(table_name=None):
     if table_name is None:
         return render_template('show_db.html',
