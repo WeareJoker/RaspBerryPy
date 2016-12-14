@@ -1,6 +1,8 @@
-from scapy.all import *
-from analysis.plugins import plugin_list, migrate
 from multiprocessing import Process
+
+from scapy.all import *
+
+from analysis.plugins import plugin_list
 
 
 def packet_handler(pkt):

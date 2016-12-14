@@ -1,6 +1,7 @@
 import os
 import sys
 import importlib
+from ..database import engine, Session
 
 plugin_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, plugin_path)
@@ -16,8 +17,6 @@ def migrate():
 
 
 def get_model_list():
-    from ..database import engine
-
     migrate()
 
     table_names = engine.table_names()
@@ -29,5 +28,5 @@ def get_model_list():
         if model_obj.lower() in table_names
         ]
 
-
+db_session = Session()
 table_name_list, table_list = get_model_list()
