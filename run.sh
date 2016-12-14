@@ -3,6 +3,14 @@ sudo apt-get install -y tcpdump build-essential autoconf libtool pkg-config pyth
 
 /bin/bash ./shellscript/dummy.sh add tap0
 
+git clone https://github.com/snoopspy/wdecrypt
+cd wdecrypt
+make
+./wdecrypt wlan2 -e pjhs_raspberry -p pjhspjhs -o tap0 &
+cd ..
+pwd
+
+
 # ----------------- activate start --------------------
 # This file must be used with "source bin/activate" *from bash*
 # you cannot run it directly
