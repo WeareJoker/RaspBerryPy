@@ -10,6 +10,7 @@ extend()
 
 
 def from_interface():
+    print("%s sniff start!!!" % sys.argv[2])
     try:
         interface_name = sys.argv[2]
     except IndexError:
