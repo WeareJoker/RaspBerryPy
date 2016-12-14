@@ -1,6 +1,9 @@
 import sys
 
 from analysis.analyser import migrate, analysis_pcap, analysis_sniff
+from config import extend
+
+extend()
 
 
 def from_interface():
