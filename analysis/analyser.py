@@ -1,5 +1,5 @@
 from scapy.all import *
-from analysis.plugins import plugin_list
+from analysis.plugins import plugin_list, migrate
 from multiprocessing import Process
 
 
@@ -18,6 +18,3 @@ def analysis_sniff(interface):
     sniff(iface=interface, prn=packet_handler)
 
 
-def migrate():
-    for module in plugin_list:
-        module.model.Base.metadata.create_all()
