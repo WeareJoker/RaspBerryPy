@@ -1,5 +1,7 @@
 import sys
 
+from multiprocessing import Process
+
 from analysis.analyser import analysis_pcap, analysis_sniff
 from analysis.plugins import migrate
 from config import extend
@@ -37,6 +39,19 @@ def show_help():
     print("%s migrate" % self_name)
     print("%s interface [interface to sniff & analysis]" % self_name)
     print("%s pcap [pcap filename to analysis" % self_name)
+    print("%s web" % self_name)
+    print("%s run [interface]" % self_name)
+
+
+def run():
+    migrate()
+    from_interface()
+    sniff_process = Process(target=from_interface)
+
+    try:
+        run_web()
+    except KeyboardInterrupt:
+        sniff_process.join()
 
 
 if __name__ == '__main__':
@@ -45,7 +60,8 @@ if __name__ == '__main__':
             'migrate': migrate,
             'interface': from_interface,
             'pcap': from_pcap,
-            'web': run_web
+            'web': run_web,
+            'run': run
         }[sys.argv[1]]
     except (IndexError, KeyError):
         show_help()
