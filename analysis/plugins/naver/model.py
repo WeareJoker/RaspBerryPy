@@ -20,10 +20,10 @@ class MailList(Base):
         self.username = username
         self.usermail = usermail
         self.title = title
-        self.sender_mail = sender_mail
-        self.sender_name = sender_name
-        self.receiver_mail = receiver_mail
-        self.receiver_name = receiver_name
+        self.sender_mail = receiver_mail
+        self.sender_name = receiver_name
+        self.receiver_mail = sender_mail
+        self.receiver_name = sender_name
         self.sent_time = sent_time
 
     def __repr__(self):
