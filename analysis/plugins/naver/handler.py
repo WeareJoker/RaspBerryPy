@@ -2,7 +2,7 @@ import datetime
 import json
 
 import requests
-from database import Session
+from analysis.database import Session
 
 from analysis.utility import http_request_filter
 from .model import MailList, MailSize

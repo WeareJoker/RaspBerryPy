@@ -2,7 +2,7 @@
 
 import requests
 from bs4 import BeautifulSoup
-from database import Session
+from analysis.database import Session
 from sqlalchemy.exc import ProgrammingError, IntegrityError
 
 from analysis.utility import InvalidInfoException, http_request_filter
