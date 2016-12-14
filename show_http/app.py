@@ -86,7 +86,7 @@ def go_login(_):
 
 
 def main():
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=8000)
 
 
 if __name__ == '__main__':
