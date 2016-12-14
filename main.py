@@ -26,6 +26,11 @@ def from_pcap():
         analysis_pcap(pcap_name)
 
 
+def run_web():
+    from show_http.app import main
+    main()
+
+
 def show_help():
     self_name = sys.argv[0]
     print("Available Command: ")
@@ -39,7 +44,8 @@ if __name__ == '__main__':
         func = {
             'migrate': migrate,
             'interface': from_interface,
-            'pcap': from_pcap
+            'pcap': from_pcap,
+            'web': run_web
         }[sys.argv[1]]
     except (IndexError, KeyError):
         show_help()

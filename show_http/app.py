@@ -3,10 +3,6 @@ from flask import abort
 from flask import redirect
 from flask import url_for
 
-from config import extend
-
-extend()
-
 from analysis.plugins import table_list, db_session
 
 import show_http.login_manager
@@ -90,5 +86,9 @@ def go_login(_):
     return redirect(url_for('login'))
 
 
-if __name__ == '__main__':
+def main():
     app.run(host='0.0.0.0', debug=True)
+
+
+if __name__ == '__main__':
+    main()
