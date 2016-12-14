@@ -1,7 +1,4 @@
 import sys
-from config import analysis_path, project_path, plugin_path
-
-sys.path.extend([plugin_path, project_path, analysis_path])
 
 from analysis.analyser import migrate, analysis_pcap, analysis_sniff
 
