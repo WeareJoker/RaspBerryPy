@@ -12,6 +12,11 @@ host_rule = re.compile(
 )
 
 
+def validate_host(host):
+    if host_rule.match(host) is None:
+        raise ValueError
+
+
 class DNSHost(Base):
     __tablename__ = 'dnshost'
     id = Column(Integer, primary_key=True)
@@ -21,11 +26,7 @@ class DNSHost(Base):
     def __init__(self, host, ip=None):
         self.host = host
         self.ip = ip
-        self.validate_host()
+        validate_host(self.host)
 
     def __repr__(self):
         return "<DNS %s>" % self.host
-
-    def validate_host(self):
-        if host_rule.match(self.host) is None:
-            raise ValueError
