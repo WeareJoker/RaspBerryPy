@@ -22,7 +22,7 @@ def get_model_list():
 
     table_names = engine.table_names()
 
-    return [
+    return table_names, [
         getattr(plugin.model, model_obj)
         for plugin in plugin_list
         for model_obj in dir(plugin.model)
@@ -30,4 +30,4 @@ def get_model_list():
         ]
 
 
-table_list = get_model_list()
+table_name_list, table_list = get_model_list()
