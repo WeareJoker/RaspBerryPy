@@ -1,9 +1,11 @@
 from analysis.database import Session
+from analysis.utility import scapy_obj
 from .model import DNSHost
 
 session = Session()
 
 
+@scapy_obj
 def handler(pkt):
     dns = pkt.getlayer("DNS")
     if dns is None:

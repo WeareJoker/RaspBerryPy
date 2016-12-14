@@ -1,3 +1,5 @@
+import pcapy
+
 from multiprocessing import Process
 
 from scapy.all import *
@@ -17,6 +19,12 @@ def analysis_pcap(pcap_filename):
 
 
 def analysis_sniff(interface):
-    sniff(iface=interface, prn=packet_handler)
+    cap = pcapy.open_live(interface, 65536, 1, 0)
+
+    while True:
+        _, pkt = cap.next()
+        packet_handler(pkt)
+
+    # sniff(iface=interface, prn=packet_handler)
 
 

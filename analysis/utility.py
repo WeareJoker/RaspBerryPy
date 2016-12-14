@@ -1,6 +1,8 @@
 import re
-
 import functools
+
+from scapy.all import *
+from struct import unpack
 
 
 class NoInfoException(Exception):
@@ -64,16 +66,75 @@ class HTTPRequest:
         return self._url
 
 
+def parse_packet(packet):
+    # parse ethernet header
+    eth_length = 14
+
+    eth_header = packet[:eth_length]
+    eth = unpack('!6s6sH', eth_header)
+    eth_protocol = socket.ntohs(eth[2])
+
+    # Parse IP packets, IP Protocol number = 8
+    if eth_protocol == 8:
+        # Parse IP header
+        # take first 20 characters for the ip header
+        ip_header = packet[eth_length:20 + eth_length]
+
+        # now unpack them :)
+        iph = unpack('!BBHHHBBH4s4s', ip_header)
+
+        version_ihl = iph[0]
+        version = version_ihl >> 4
+        ihl = version_ihl & 0xF
+
+        iph_length = ihl * 4
+
+        ttl = iph[5]
+        protocol = iph[6]
+        s_addr = socket.inet_ntoa(iph[8])
+        d_addr = socket.inet_ntoa(iph[9])
+
+        # TCP protocol
+        if protocol == 6:
+            t = iph_length + eth_length
+            tcp_header = packet[t:t + 20]
+
+            # now unpack them :)
+            tcph = unpack('!HHLLBBHHH', tcp_header)
+
+            source_port = tcph[0]
+
+            dest_port = tcph[1]
+            # print('Version : ' + str(version) + ' IP Header Length : ' + str(ihl) + ' TTL : ' + str(
+            #    ttl) + ' Protocol : ' + str(
+            #    protocol) + ' Source Address : ' + str(s_addr) + ' Destination Address : ' + str(d_addr))
+
+            doff_reserved = tcph[4]
+            tcph_length = doff_reserved >> 4
+
+            # print('Source Port : ' + str(source_port) + ' Dest Port : ' + str(dest_port) + ' Sequence Number : ' +
+            # str( sequence) + ' Acknowledgement : ' + str(acknowledgement) + ' TCP header length : ' + str(
+            # tcph_length))
+
+            h_size = eth_length + iph_length + tcph_length * 4
+
+            # get data from the packet
+            data = packet[h_size:]
+
+            return data.decode()
+
+
 def http_request_filter(filter_rule):
     def actual_http_filter(func):
 
         @functools.wraps(func)
         def wrapper(*args, **_):
             try:
-                if args[0].getlayer("TCP").dport != 80:
+                pkt = Ether(args[0])
+                if pkt.getlayer("TCP").dport != 80:
                     raise AttributeError
 
-                h = HTTPRequest(args[0].getlayer("Raw").load.decode())
+                h = HTTPRequest(parse_packet(args[0]))
 
             except (NoInfoException, AttributeError):
                 return
@@ -86,3 +147,9 @@ def http_request_filter(filter_rule):
         return wrapper
 
     return actual_http_filter
+
+
+def scapy_obj(func):
+    def wrapper(*args, **kwargs):
+        return func(Ether(args[0]))
+    return wrapper
