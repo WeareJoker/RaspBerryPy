@@ -15,7 +15,6 @@ def make_app():
     tmp_app = Flask(__name__)
 
     tmp_app.config['SECRET_KEY'] = 'development_key'
-    tmp_app.config['DEBUG'] = True
     tmp_app.config['ADMIN_ID'] = 'admin'
     tmp_app.config['ADMIN_PW'] = 'admin'
 
@@ -87,7 +86,7 @@ def go_login(_):
 
 
 def main():
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0')
 
 
 if __name__ == '__main__':
