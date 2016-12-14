@@ -1,6 +1,7 @@
 import sys
 
-from analysis.analyser import migrate, analysis_pcap, analysis_sniff
+from analysis.analyser import analysis_pcap, analysis_sniff
+from analysis.plugins import migrate
 from config import extend
 
 extend()
