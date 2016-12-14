@@ -17,7 +17,8 @@ def from_interface():
         show_help()
         return
     else:
-        analysis_sniff(interface_name)
+        # analysis_sniff(interface_name)
+        Process(target=analysis_sniff, args=(interface_name,)).start()
 
 
 def from_pcap():
@@ -47,12 +48,8 @@ def show_help():
 def run():
     migrate()
     from_interface()
-    sniff_process = Process(target=from_interface)
 
-    try:
-        run_web()
-    except KeyboardInterrupt:
-        sniff_process.join()
+    run_web()
 
 
 if __name__ == '__main__':
