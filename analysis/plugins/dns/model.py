@@ -13,7 +13,7 @@ host_rule = re.compile(
 
 
 class DNSHost(Base):
-    __tablename__ = 'dns'
+    __tablename__ = 'dnshost'
     id = Column(Integer, primary_key=True)
     host = Column(String(30), nullable=False)
     ip = Column(String(30), nullable=False)
