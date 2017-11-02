@@ -3,7 +3,7 @@
 
 ## Usage  
 ## 1. Add plugin  
-플러그인을 추가하는 방법은 약간의 규칙을 지켜준다면, 아주 간단합니다!  
+플러그인을 추가하는 방법은 (약간의 규칙을 지켜준다면) 아주 간단합니다!  
 1. 기존에 있는 다른 플러그인 폴더를 복사해주세요. _new plugin_ 이름 대신 넣고 싶은 이름을 넣으시면 됩니다.  
 ![1.png](https://raw.githubusercontent.com/WeareJoker/RaspBerryPy/master/images/1.png)  
 
