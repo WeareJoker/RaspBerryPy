@@ -7,7 +7,7 @@
 1. 기존에 있는 다른 플러그인 폴더를 복사해주세요. _new plugin_ 이름 대신 넣고 싶은 이름을 넣으시면 됩니다.  
 ![1.png](https://raw.githubusercontent.com/WeareJoker/RaspBerryPy/master/images/1.png)  
 
-2. new plugin 폴더에서, 개발할 때 **_건드릴 수_** 있는 파일은 다음과 같습니다.  
+2. new plugin 폴더에서, 개발할 때 **_수정할 수_** 있는 파일은 다음과 같습니다.  
 	- `handler.py`  
 	- `model.py`  
 	이 외의 파일을 건드리시면, `pull request` 가 허용되지 않으니, 꼭 기억해주시기 바랍니다.  
